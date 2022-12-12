@@ -1,4 +1,4 @@
-name: Bootstrapping + releasing fedora rootfs
+name: Bootstrapping + releasing arch rootfs
 on:
   push:
     branches: [ "main" ]
@@ -19,7 +19,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y arch-install-scripts curl
 
       - name: Bootstrapping arch
-        run: sudo bash bootstrap_arch.sh 38
+        run: sudo bash bootstrap-arch.sh 38
 
       - name: Uploading rootfs as artifact
         uses: actions/upload-artifact@v2
