@@ -30,6 +30,7 @@ jobs:
             /tmp/arch-rootfs.tar.xz
   create-release:
     runs-on: ubuntu-22.04
+    needs: [ build-arch ]
     steps:
       - name: Downloading rootfs artifacts
         uses: actions/download-artifact@v3
