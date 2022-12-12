@@ -7,14 +7,10 @@ mkdir -p "/tmp/arch"
 mkdir "/tmp/depthboot"
 
 echo "Bootstrapping arch"
-wget https://geo.mirror.pkgbuild.com/iso/latest/archlinux-bootstrap-x86_64.tar.gz \
-filename="/tmp/depthboot/arch-rootfs.tar.gz"
-git clone --depth=1 https://github.com/eupnea-linux/systemd-services \
-/tmp/depthboot/systemd-services
-git clone --depth=1 https://github.com/eupnea-linux/postinstall-scripts \
-/tmp/depthboot/postinstall-scripts
-git clone --depth=1 https://github.com/eupnea-linux/audio-scripts \
-/tmp/depthboot/audio-scripts
+wget -O /tmp/depthboot/arch-rootfs.tar.gz https://geo.mirror.pkgbuild.com/iso/latest/archlinux-bootstrap-x86_64.tar.gz
+git clone --depth=1 https://github.com/eupnea-linux/systemd-services /tmp/depthboot/systemd-services
+git clone --depth=1 https://github.com/eupnea-linux/postinstall-scripts /tmp/depthboot/postinstall-scripts
+git clone --depth=1 https://github.com/eupnea-linux/audio-scripts /tmp/depthboot/audio-scripts
 tar xfp /tmp/depthboot/arch-rootfs.tar.gz
 cp -r /tmp/depthboot/arch-rootfs/root.x86_64/ /tmp/arch
 mkdir -p /tmp/arch/run/systemd/resolve
