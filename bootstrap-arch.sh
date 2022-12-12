@@ -14,8 +14,7 @@ git clone --depth=1 https://github.com/eupnea-linux/audio-scripts /tmp/depthboot
 tar xfp /tmp/depthboot/arch-rootfs.tar.gz
 ls
 ls
-pause 5
-cp -r /tmp/depthboot/arch-rootfs/ /tmp/arch
+cp -r /tmp/depthboot/arch-rootfs/root.x86_64/ /tmp/arch
 mkdir -p /tmp/arch/run/systemd/resolve
 cp /etc/resolv.conf /tmp/arch/run/systemd/resolve/stub-resolv.conf
 cp /etc/resolv.conf /tmp/arch/etc/resolv.conf
