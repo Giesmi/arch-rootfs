@@ -12,7 +12,10 @@ git clone --depth=1 https://github.com/eupnea-linux/systemd-services /tmp/depthb
 git clone --depth=1 https://github.com/eupnea-linux/postinstall-scripts /tmp/depthboot/postinstall-scripts
 git clone --depth=1 https://github.com/eupnea-linux/audio-scripts /tmp/depthboot/audio-scripts
 tar xfp /tmp/depthboot/arch-rootfs.tar.gz
-cp -r /tmp/depthboot/arch-rootfs/root.x86_64/ /tmp/arch
+ls
+ls
+pause 5
+cp -r /tmp/depthboot/arch-rootfs/ /tmp/arch
 mkdir -p /tmp/arch/run/systemd/resolve
 cp /etc/resolv.conf /tmp/arch/run/systemd/resolve/stub-resolv.conf
 cp /etc/resolv.conf /tmp/arch/etc/resolv.conf
