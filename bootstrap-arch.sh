@@ -19,7 +19,7 @@ mkdir -p /tmp/arch/run/systemd/resolve
 cp /etc/resolv.conf /tmp/arch/run/systemd/resolve/stub-resolv.conf
 cp /etc/resolv.conf /tmp/arch/etc/resolv.conf
 rm /tmp/depthboot/postinstall-scripts/LICENSE /tmp/depthboot/postinstall-scripts/README.md /tmp/depthboot/postinstall-scripts/.gitignore
-cp /tmp/depthboot/postinstall-scripts/* /tmp/arch/usr/local/bin
+cp -r /tmp/depthboot/postinstall-scripts/* /tmp/arch/usr/local/bin
 cp /tmp/depthboot/audio-scripts/setup-audio" "/tmp/arch/usr/local/bin/setup-audio
 wget https://raw.githubusercontent.com/eupnea-linux/depthboot-builder/main/functions.py /tmp/arch/usr/local/bin
 chroot /tmp/arch /bin/bash -c "chmod 755 /usr/local/bin/*"
