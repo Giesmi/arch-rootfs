@@ -11,10 +11,10 @@ wget -O /tmp/depthboot/arch-rootfs.tar.gz https://geo.mirror.pkgbuild.com/iso/la
 git clone --depth=1 https://github.com/eupnea-linux/systemd-services /tmp/depthboot/systemd-services
 git clone --depth=1 https://github.com/eupnea-linux/postinstall-scripts /tmp/depthboot/postinstall-scripts
 git clone --depth=1 https://github.com/eupnea-linux/audio-scripts /tmp/depthboot/audio-scripts
-tar xfp /tmp/depthboot/arch-rootfs.tar.gz
+tar xfp /tmp/depthboot/arch-rootfs.tar.gz 
 ls
 ls
-cp -r /tmp/depthboot/arch-rootfs/root.x86_64/ /tmp/arch
+cp -r root.x86_64/* /tmp/arch
 mkdir -p /tmp/arch/run/systemd/resolve
 cp /etc/resolv.conf /tmp/arch/run/systemd/resolve/stub-resolv.conf
 cp /etc/resolv.conf /tmp/arch/etc/resolv.conf
