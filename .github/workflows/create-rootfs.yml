@@ -1,0 +1,52 @@
+name: Bootstrapping + releasing fedora rootfs
+on:
+  push:
+    branches: [ "main" ]
+  schedule:
+    - cron: "0 0 * * *" # run at the start of every day
+  workflow_dispatch:
+
+jobs:
+  build-arch:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checking out repository code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Installing dependencies
+        run: sudo apt-get update && sudo apt-get install -y arch-install-scripts curl
+
+      - name: Bootstrapping arch
+        run: sudo bash bootstrap_arch.sh 38
+
+      - name: Uploading rootfs as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: arch-linux
+          retention-days: 1
+          path: |
+            /tmp/arch-rootfs.tar.xz
+  create-release:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Downloading rootfs artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: /tmp/artifacts/
+
+      - name: Generating release tag
+        id: tag
+        run: |
+          echo "::set-output name=release_tag::$(date +"%Y.%m.%d_%H-%M")"
+      - name: Creating new release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.tag.outputs.release_tag }}
+          name: Automated Arch rootfs build - ${{ steps.tag.outputs.release_tag }}
+          body: |
+            These are completely **unmodified** arch rootfs images for the depthboot builder script.  
+            Please download official images at https://archlinux.org/
+          files: |
+            /tmp/artifacts/fedora-*/fedora-rootfs-*
